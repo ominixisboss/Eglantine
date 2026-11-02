@@ -1,0 +1,14 @@
+Subject: [PATCH] audio_dump: return a value for unknown sample formats
+
+Fixes -Wreturn-type in bytes_per_sample().
+---
+--- a/src/cubeb_audio_dump.cpp
++++ b/src/cubeb_audio_dump.cpp
+@@ -29,6 +29,7 @@
+   case CUBEB_SAMPLE_FLOAT32BE:
+     return sizeof(float);
+   };
++  return 0;
+ }
+ 
+ struct cubeb_audio_dump_stream {
