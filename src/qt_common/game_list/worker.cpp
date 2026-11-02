@@ -552,7 +552,7 @@ void GameListWorker::run() {
         DirEntryReady(game_list_dir);
         if (scan) {
             const auto discovery = GameListDiscovery::Discover(
-                std::filesystem::u8path(game_dir.path), game_dir.deep_scan,
+                std::filesystem::path{Common::FS::ToU8String(game_dir.path)}, game_dir.deep_scan,
                 [](const auto& path) {
                     const auto name = Common::FS::PathToUTF8String(path);
                     return HasSupportedFileExtension(name) || IsExtractedNCAMain(name);
